@@ -47,7 +47,7 @@ public class TarefaController {
     }
 
     //Saúde
-    @GetMapping("/health")
+    @GetMapping("/health2")
     public String health() {
         return "OK";
     }
