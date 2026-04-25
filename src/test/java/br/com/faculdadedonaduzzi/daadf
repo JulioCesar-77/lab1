@@ -1,0 +1,9 @@
+Services: postgres_db 
+image postgres 15 alpine
+container name: kanban_postgres
+environment
+postgres_user:admin
+postgres_password:admin_password
+postgres_db
+postgres_db: kanban_db
+ports 5433  

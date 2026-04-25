@@ -1,7 +1,7 @@
 package br.com.faculdadedonaduzzi.lab.controller;
 
 import br.com.faculdadedonaduzzi.lab.dto.TarefaDTO;
-import br.com.faculdadedonaduzzi.lab.dto.TarefaReponseDTO;
+import br.com.faculdadedonaduzzi.lab.dto.TarefaResponseDTO;
 import br.com.faculdadedonaduzzi.lab.entity.Task;
 import br.com.faculdadedonaduzzi.lab.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,28 +22,28 @@ public class TarefaController {
     }
 
     @GetMapping
-    public List<TarefaReponseDTO> getTasks() {
-        return taskRepository.findAll().stream().map(TarefaReponseDTO::new).toList();
+    public List<TarefaResponseDTO> getTasks() {
+        return taskRepository.findAll().stream().map(TarefaResponseDTO::new).toList();
     }
 
     @PostMapping
-    public TarefaReponseDTO save(@RequestBody TarefaDTO task) {
+    public TarefaResponseDTO save(@RequestBody TarefaDTO task) {
         Task newTask = new Task();
         newTask.setTitulo(task.titulo());
         newTask.setDescricao(task.descricao());
         newTask.setStatus(task.status());
         Task savedTask = taskRepository.save(newTask);
-        return new TarefaReponseDTO(savedTask);
+        return new TarefaResponseDTO(savedTask);
     }
 
     @PutMapping("/{id}")
-    public TarefaReponseDTO update(@PathVariable Long id, @RequestBody TarefaDTO task) {
+    public TarefaResponseDTO update(@PathVariable Long id, @RequestBody TarefaDTO task) {
         Task newTask = taskRepository.findById(id).orElseThrow();
         newTask.setTitulo(task.titulo());
         newTask.setDescricao(task.descricao());
         newTask.setStatus(task.status());
         Task savedTask = taskRepository.save(newTask);
-        return new TarefaReponseDTO(savedTask);
+        return new TarefaResponseDTO(savedTask);
     }
 
     //Saúde
